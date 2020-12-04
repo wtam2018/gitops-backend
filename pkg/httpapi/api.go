@@ -24,8 +24,6 @@ var DefaultSecretRef = types.NamespacedName{
 	Namespace: "pipelines-app-delivery",
 }
 
-const defaultRef = "master"
-
 // APIRouter is an HTTP API for accessing app configurations.
 type APIRouter struct {
 	*httprouter.Router
@@ -203,7 +201,7 @@ func refFromQuery(v url.Values) string {
 	if ref := v.Get("ref"); ref != "" {
 		return ref
 	}
-	return defaultRef
+	return ""
 }
 
 func marshalResponse(w http.ResponseWriter, v interface{}) {
